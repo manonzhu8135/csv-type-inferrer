@@ -27,3 +27,10 @@ The standard library has no type-inference helper, and the ones you reach for (`
 - **Dates are `YYYY-MM-DD` only**, and only month/day ranges are checked — `2020-02-30` is accepted, `2020-13-01` is not.
 
 Standard library only. No third-party dependencies.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
